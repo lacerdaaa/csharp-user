@@ -74,7 +74,8 @@ namespace RegistroDeUsuarios.DAOs
             }
 
             return listaPessoa;
-            
         }
+
+       
     }
 }
