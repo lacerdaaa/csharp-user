@@ -8,9 +8,9 @@ namespace RegistroDeUsuarios.Models
 {
     public class Pessoa
     {
-        private int ID { get; set; }
-        private string Name { get; set; }
-        private string Email { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
         public string Phone { get; set; }
     }
 }

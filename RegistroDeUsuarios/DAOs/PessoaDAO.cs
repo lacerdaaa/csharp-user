@@ -26,13 +26,21 @@ namespace RegistroDeUsuarios.DAOs
 
         public void Create(Pessoa pessoa)
         {
-            string Sql = "INSERT INTO pessoas" + "(name, email, phone) VALUES (@name, @email, @telefone)";
+            string Sql = "INSERT INTO pessoas" + "(name, email, phone) VALUES (@n, @e, @p)";
 
             try
             {
                 var cmd = dbConnection.Connect().CreateCommand();
+                cmd.CommandText = Sql;
+                cmd.Parameters.AddWithValue("@n", pessoa.Name);
+                cmd.Parameters.AddWithValue("@e", pessoa.Email);
+                cmd.Parameters.AddWithValue("@p", pessoa.Phone);
+
+                cmd.ExecuteNonQuery();
             }
-            catch (Exception e) { }
+            catch (Exception e) {
+                MessageBox.Show(e.Message);
+            }
         }
     }
 }
