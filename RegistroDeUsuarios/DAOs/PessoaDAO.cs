@@ -38,9 +38,39 @@ namespace RegistroDeUsuarios.DAOs
 
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 MessageBox.Show(e.Message);
             }
+            finally { 
+                dbConnection.Desconnect();
+            }
+        }
+
+        public List<Pessoa> GetAll()
+        {
+            string sql = "SELECT * FROM PESSOAS";
+            List<Pessoa> listaPessoa = new List<Pessoa>();
+
+            try
+            {
+                var cmd = dbConnection.Connect().CreateCommand();
+                cmd.CommandText = sql;
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    Pessoa pessoa = new Pessoa();
+                    pessoa.ID = result.GetInt32(0);
+                    pessoa.Name = result.GetString(1);
+                    pessoa.Email = result.GetString(2);
+                    pessoa.Phone = result.GetString(result.GetOrdinal("Phone"));
+
+                }
+            }
+            catch (Exception e) { }
+
+            return listaPessoa;
+            
         }
     }
 }
