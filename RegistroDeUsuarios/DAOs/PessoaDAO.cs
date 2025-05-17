@@ -65,9 +65,13 @@ namespace RegistroDeUsuarios.DAOs
                     pessoa.Email = result.GetString(2);
                     pessoa.Phone = result.GetString(result.GetOrdinal("Phone"));
 
+                    listaPessoa.Add(pessoa);
                 }
+                    result.Close();
             }
-            catch (Exception e) { }
+            catch (Exception e) {
+                MessageBox.Show(e.Message);
+            }
 
             return listaPessoa;
             
